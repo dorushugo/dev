@@ -1,22 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Autocar Location
 
-## Getting Started
+Application de gestion de location d'autocars, comprenant:
 
-First, run the development server:
+- Demande de devis
+- Gestion des devis et commandes
+- Espace client et admin
+- Messagerie intégrée
+
+## Stack technique
+
+- Next.js 14 (App Router)
+- TypeScript
+- Tailwind CSS
+- ShadCN UI
+
+## Configuration de l'autocomplétion d'adresses
+
+L'application utilise l'API Google Places pour l'autocomplétion des champs d'adresse. Pour activer cette fonctionnalité:
+
+1. Créez un projet dans la Google Cloud Console
+2. Activez l'API Places pour votre projet
+3. Générez une clé API avec les restrictions appropriées
+4. Copiez la clé API dans le fichier `.env.local` :
+
+```
+GOOGLE_MAPS_API_KEY=votre_clé_api_ici
+```
+
+5. Décommentez et adaptez le code dans `components/autocomplete-component.tsx`
+
+## Installation
+
+```bash
+npm install
+# ou
+yarn install
+# ou
+pnpm install
+```
+
+## Développement
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) avec votre navigateur pour voir le résultat.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure du projet
+
+- `/app` - Routes et pages de l'application
+- `/components` - Composants réutilisables
+- `/lib` - Utilitaires, hooks et contextes
+- `/public` - Fichiers statiques
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
