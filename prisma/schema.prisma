@@ -1,0 +1,86 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  password      String          // Sera haché
+  name          String?
+  role          UserRole        @default(CLIENT)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  quotes        QuoteRequest[]  @relation("UserQuotes")
+  messages      Message[]       @relation("UserMessages")
+  isAnonymous   Boolean         @default(false) // Pour différencier les utilisateurs créés suite à un devis anonyme
+}
+
+enum UserRole {
+  CLIENT
+  ADMIN
+}
+
+model QuoteRequest {
+  id                 String        @id @default(cuid())
+  userId             String?       // Optionnel si la demande est anonyme au début
+  user               User?         @relation("UserQuotes", fields: [userId], references: [id])
+  departureLocation  String
+  arrivalLocation    String
+  date               DateTime      // Stocker comme DateTime pour plus de flexibilité
+  time               String        // Peut-être combiner avec date ou affiner le type
+  passengers         Int
+  serviceType        ServiceType
+  options            Json          // Stocker les options comme un objet JSON: { accessibility: bool, wifi: bool, ... }
+  status             QuoteStatus   @default(PENDING)
+  estimatedPrice     Float?
+  finalPrice         Float?        // Si le prix est ajusté après la demande
+  partnerId          String?
+  partner            Partner?      @relation(fields: [partnerId], references: [id])
+  messages           Message[]     @relation("QuoteMessages")
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  // Champs pour le calcul de distance si on veut les logger
+  distanceKm         Float?
+  durationMinutes    Int?
+}
+
+enum ServiceType {
+  ONE_WAY
+  ROUND_TRIP
+  STAY
+}
+
+enum QuoteStatus {
+  PENDING
+  CONFIRMED
+  REJECTED
+  CANCELLED // Ajout d'un statut annulé
+}
+
+model Partner {
+  id          String         @id @default(cuid())
+  name        String
+  contactName String?
+  email       String         @unique
+  phone       String?
+  quotes      QuoteRequest[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Message {
+  id           String        @id @default(cuid())
+  requestId    String
+  request      QuoteRequest  @relation("QuoteMessages", fields: [requestId], references: [id])
+  userId       String        // Qui a envoyé le message
+  user         User          @relation("UserMessages", fields: [userId], references: [id])
+  isAdminMessage Boolean       // True si le message vient d'un admin, false si d'un client
+  content      String
+  createdAt    DateTime      @default(now())
+  readAt       DateTime?     // Pour marquer si le message a été lu
+} 
