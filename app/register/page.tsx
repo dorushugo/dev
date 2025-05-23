@@ -111,115 +111,129 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="container flex items-center justify-center min-h-screen py-12 px-10">
-      <Card className="w-full max-w-md mx-auto">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">
-            Créer un compte
-          </CardTitle>
-          <CardDescription className="text-center">
-            Inscrivez-vous pour accéder à toutes nos fonctionnalités
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Nom complet*</Label>
-              <Input
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Email*</Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="phone">Téléphone*</Label>
-              <Input
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="company">Entreprise (optionnel)</Label>
-              <Input
-                id="company"
-                name="company"
-                value={formData.company}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Mot de passe*</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-              <p className="text-xs text-muted-foreground">
-                Le mot de passe doit contenir au moins 8 caractères
-              </p>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">
-                Confirmer le mot de passe*
-              </Label>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="flex items-center space-x-2 mt-4">
-              <Checkbox
-                id="terms"
-                checked={acceptTerms}
-                onCheckedChange={(checked) => setAcceptTerms(checked === true)}
-              />
-              <label
-                htmlFor="terms"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-6">
+        <div className="flex flex-col space-y-2 text-center">
+          <h1 className="text-2xl font-semibold tracking-tight">Inscription</h1>
+          <p className="text-sm text-muted-foreground">
+            Créez votre compte pour accéder à nos services
+          </p>
+        </div>
+
+        <Card className="shadow-lg">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-xl font-bold text-center">
+              Créer un compte
+            </CardTitle>
+            <CardDescription className="text-center">
+              Inscrivez-vous pour accéder à toutes nos fonctionnalités
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Nom complet*</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email*</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Téléphone*</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="company">Entreprise (optionnel)</Label>
+                <Input
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Mot de passe*</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <p className="text-xs text-muted-foreground">
+                  Le mot de passe doit contenir au moins 8 caractères
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">
+                  Confirmer le mot de passe*
+                </Label>
+                <Input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="flex items-center space-x-2 mt-4">
+                <Checkbox
+                  id="terms"
+                  checked={acceptTerms}
+                  onCheckedChange={(checked) =>
+                    setAcceptTerms(checked === true)
+                  }
+                />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  J&apos;accepte les{" "}
+                  <Link href="/terms" className="text-primary underline">
+                    conditions générales
+                  </Link>
+                </label>
+              </div>
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Création en cours..." : "Créer un compte"}
+              </Button>
+            </form>
+          </CardContent>
+          <CardFooter className="flex flex-col items-center justify-center">
+            <div className="text-sm text-muted-foreground mt-2">
+              <span>Vous avez déjà un compte ? </span>
+              <Link
+                href="/login"
+                className="text-primary underline-offset-4 hover:underline"
               >
-                J&apos;accepte les{" "}
-                <Link href="/terms" className="text-primary underline">
-                  conditions générales
-                </Link>
-              </label>
+                Connectez-vous
+              </Link>
             </div>
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
-              {isSubmitting ? "Création en cours..." : "Créer un compte"}
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="flex flex-col space-y-2">
-          <div className="text-sm text-center mt-2">
-            Vous avez déjà un compte ?{" "}
-            <Link href="/login" className="text-primary underline">
-              Connectez-vous
-            </Link>
-          </div>
-        </CardFooter>
-      </Card>
+          </CardFooter>
+        </Card>
+      </div>
     </div>
   );
 }

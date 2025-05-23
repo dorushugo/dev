@@ -64,8 +64,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="container flex h-screen w-screen flex-col items-center justify-center px-10">
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md space-y-6">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">Connexion</h1>
           <p className="text-sm text-muted-foreground">
@@ -73,7 +73,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <Card>
+        <Card className="shadow-lg">
           <CardHeader>
             <CardTitle>Connexion</CardTitle>
             <CardDescription>
@@ -134,16 +134,25 @@ export default function LoginPage() {
             <div className="text-sm text-muted-foreground mt-2">
               <span>Vous n&apos;avez pas de compte ? </span>
               <Link
+                href="/register"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                Créer un compte
+              </Link>
+            </div>
+            <div className="text-sm text-muted-foreground mt-2">
+              <span>Ou </span>
+              <Link
                 href="/quote"
                 className="text-primary underline-offset-4 hover:underline"
               >
-                Demandez un devis
+                Demandez un devis directement
               </Link>
             </div>
           </CardFooter>
         </Card>
 
-        <div className="px-8 text-sm text-muted-foreground text-center">
+        <div className="px-4 text-sm text-muted-foreground text-center">
           <p className="mb-2">Identifiants de démonstration:</p>
           <p>Client: client@exemple.fr / 123456</p>
           <p>Admin: admin@exemple.fr / admin123</p>
