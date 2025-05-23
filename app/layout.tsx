@@ -26,7 +26,7 @@ export default function RootLayout({
             <Navbar />
             <main className="flex-1">{children}</main>
             <footer className="border-t py-6">
-              <div className="container flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
+              <div className=" flex flex-col items-center justify-between gap-4 px-4 md:flex-row">
                 <p className="text-center text-sm text-muted-foreground">
                   &copy; {new Date().getFullYear()} Autocar Location. Tous
                   droits réservés.
