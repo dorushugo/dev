@@ -49,9 +49,11 @@ export function Navbar() {
   return (
     <nav className="border-b bg-background sticky top-0 z-50 shadow-sm">
       <div className="w-full flex h-16 items-center justify-between px-10 py-2 mx-auto">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center text-2xl font-bold">
-            <AutocarLogo />
+        <div className="flex items-center gap-8 ">
+          <Link
+            href="/"
+            className="flex items-center text-2xl font-bold text-primary"
+          >
             Autocar Location
           </Link>
 

@@ -20,6 +20,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { DatePicker } from "@/components/ui/date-picker";
+import { TimePicker } from "@/components/ui/time-picker";
 import { useAuth } from "@/lib/auth-context";
 import { useQuote } from "@/lib/quote-context";
 import { calculateEstimatedPrice } from "@/lib/utils";
@@ -331,7 +333,12 @@ export function QuoteForm() {
                   <FormItem>
                     <FormLabel>Date de départ</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <DatePicker
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="Sélectionner la date de départ"
+                        minDate={new Date()} // Pas de dates passées
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -345,7 +352,11 @@ export function QuoteForm() {
                   <FormItem>
                     <FormLabel>Heure de départ</FormLabel>
                     <FormControl>
-                      <Input type="time" {...field} />
+                      <TimePicker
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder="Sélectionner l'heure de départ"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
