@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -50,6 +51,192 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* Hero Image Section */}
+        <div className="mt-16 space-y-8">
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-gradient-to-br from-blue-50 to-green-50">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-green-600/20"></div>
+            <div className="relative h-96 md:h-[500px]">
+              <Image
+                src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                alt="Autocar moderne blanc sur route"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center space-y-4 p-8">
+                  <div className="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-xl max-w-md mx-auto">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                        <svg
+                          className="w-8 h-8 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                      Autocar Premium
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      Confort optimal • WiFi • Climatisation • Sièges
+                      ergonomiques
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Transport Types Gallery */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="h-64 relative">
+                <Image
+                  src="https://media.istockphoto.com/id/1395748040/fr/photo/un-jeune-gar%C3%A7on-monte-dans-un-autobus-scolaire-au-soleil.jpg?s=612x612&w=0&k=20&c=eElbaxY_5dOz8lcM78nVSs1RVr15MW2_tKfTGCN7Vvc="
+                  alt="Autocar scolaire jaune"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-600/40"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="w-20 h-20 bg-blue-500/90 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 mx-auto">
+                      <svg
+                        className="w-10 h-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold">Voyages Scolaires</h3>
+                    <p className="text-sm mt-2 opacity-90">
+                      Transport sécurisé pour vos sorties éducatives
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-white">
+                  <p className="text-sm">
+                    Découvrez nos solutions dédiées aux établissements scolaires
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="h-64 relative">
+                <Image
+                  src="https://lemagdelaconso.ouest-france.fr/images/dossiers/2024-06/car-vacances-160818.jpg"
+                  alt="Autocar moderne pour entreprises"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-green-600/40"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="w-20 h-20 bg-green-500/90 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 mx-auto">
+                      <svg
+                        className="w-10 h-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold">
+                      Événements d&apos;Entreprise
+                    </h3>
+                    <p className="text-sm mt-2 opacity-90">
+                      Séminaires et déplacements professionnels
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-green-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-white">
+                  <p className="text-sm">
+                    Solutions sur mesure pour vos besoins professionnels
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+              <div className="h-64 relative">
+                <Image
+                  src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+                  alt="Autocar de tourisme"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-600/40"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center text-white">
+                    <div className="w-20 h-20 bg-purple-500/90 backdrop-blur-sm rounded-full flex items-center justify-center mb-4 mx-auto">
+                      <svg
+                        className="w-10 h-10 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold">
+                      Tourisme & Excursions
+                    </h3>
+                    <p className="text-sm mt-2 opacity-90">
+                      Découvrez de nouveaux horizons en groupe
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-purple-600/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-6 text-white">
+                  <p className="text-sm">
+                    Voyages mémorables et excursions exceptionnelles
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Services Section */}
@@ -62,10 +249,152 @@ export default function Home() {
             </p>
           </div>
 
+          {/* Autocar Showcase */}
+          <div className="mt-12 mb-16">
+            <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
+              <div className="relative px-8 py-16 md:px-16 md:py-24">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div className="space-y-6 text-white">
+                    <div className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
+                      <span className="text-sm font-medium">
+                        🚍 Flotte moderne
+                      </span>
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-bold leading-tight">
+                      Voyagez dans le confort
+                      <span className="block text-transparent bg-gradient-to-r from-blue-300 to-purple-300 bg-clip-text">
+                        et la sécurité
+                      </span>
+                    </h3>
+                    <p className="text-lg text-gray-200 leading-relaxed">
+                      Nos autocars modernes sont équipés de toutes les
+                      commodités pour rendre vos trajets agréables :
+                      climatisation, WiFi gratuit, prises USB et sièges
+                      ergonomiques.
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 pt-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm">WiFi gratuit</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm">Climatisation</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm">Prises USB</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                          <svg
+                            className="w-4 h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-sm">Sièges confort</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-2xl">
+                      <div className="aspect-video rounded-xl overflow-hidden relative">
+                        <Image
+                          src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                          alt="Autocar Premium 55 places - Intérieur luxueux"
+                          fill
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          <div className="text-center text-white">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mb-3 mx-auto backdrop-blur-sm bg-white/20">
+                              <svg
+                                className="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m-6 3l6-3"
+                                />
+                              </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-2">
+                              Autocar Premium 55 places
+                            </h4>
+                            <p className="text-sm opacity-90">
+                              Confort maximal pour vos longs trajets
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-8">
-            <Card className="transition-all hover:shadow-lg">
+            <Card className="transition-all hover:shadow-lg group">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 mb-2 group-hover:bg-blue-200 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -76,12 +405,14 @@ export default function Home() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    className="h-6 w-6 text-blue-600"
                   >
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z" />
+                    <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C20.168 18.477 18.582 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
                 </div>
-                <CardTitle>Déplacements scolaires</CardTitle>
+                <CardTitle className="group-hover:text-blue-600 transition-colors">
+                  Déplacements scolaires
+                </CardTitle>
                 <CardDescription>
                   Transport sécurisé pour vos sorties scolaires, voyages de
                   classe et activités extrascolaires.
@@ -89,9 +420,9 @@ export default function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="transition-all hover:shadow-lg">
+            <Card className="transition-all hover:shadow-lg group">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 mb-2 group-hover:bg-green-200 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -102,15 +433,14 @@ export default function Home() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    className="h-6 w-6 text-green-600"
                   >
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 </div>
-                <CardTitle>Événements d&apos;entreprise</CardTitle>
+                <CardTitle className="group-hover:text-green-600 transition-colors">
+                  Événements d&apos;entreprise
+                </CardTitle>
                 <CardDescription>
                   Solutions pour vos séminaires, team building et déplacements
                   professionnels.
@@ -118,9 +448,9 @@ export default function Home() {
               </CardHeader>
             </Card>
 
-            <Card className="transition-all hover:shadow-lg">
+            <Card className="transition-all hover:shadow-lg group">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mb-2">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 mb-2 group-hover:bg-purple-200 transition-colors">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -131,13 +461,15 @@ export default function Home() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    className="h-6 w-6 text-purple-600"
                   >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <CardTitle>Tourisme & Excursions</CardTitle>
+                <CardTitle className="group-hover:text-purple-600 transition-colors">
+                  Tourisme & Excursions
+                </CardTitle>
                 <CardDescription>
                   Voyages organisés, excursions touristiques et transport pour
                   vos événements privés.
@@ -213,106 +545,104 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mt-8">
-            <Card className="text-center">
+            <Card className="text-center group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mx-auto mb-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    className="h-8 w-8 text-white"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    viewBox="0 0 24 24"
                   >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12,6 12,12 16,14" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
                 </div>
-                <CardTitle>Rapidité</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors">
+                  Rapidité
+                </CardTitle>
                 <CardDescription>
                   Devis rapides et réponses dans les meilleurs délais.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-center group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mx-auto mb-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-green-500 to-green-600 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    className="h-8 w-8 text-white"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    viewBox="0 0 24 24"
                   >
-                    <path d="M3 3v5h5" />
-                    <path d="M3 8a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 4" />
-                    <path d="M21 21v-5h-5" />
-                    <path d="M21 16a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 20" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
                   </svg>
                 </div>
-                <CardTitle>Flexibilité</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors">
+                  Flexibilité
+                </CardTitle>
                 <CardDescription>
                   Des solutions adaptées à vos besoins spécifiques.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-center group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mx-auto mb-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    className="h-8 w-8 text-white"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    viewBox="0 0 24 24"
                   >
-                    <path d="M9 12l2 2 4-4" />
-                    <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
-                <CardTitle>Qualité</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors">
+                  Qualité
+                </CardTitle>
                 <CardDescription>
                   Véhicules de qualité et chauffeurs expérimentés.
                 </CardDescription>
               </CardHeader>
             </Card>
 
-            <Card className="text-center">
+            <Card className="text-center group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
               <CardHeader>
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 mx-auto mb-4">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-orange-500 to-red-500 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
+                    className="h-8 w-8 text-white"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-6 w-6 text-primary"
+                    viewBox="0 0 24 24"
                   >
-                    <path d="M12 2L2 7v10c0 5.55 3.84 9.95 9 11 5.16-1.05 9-5.45 9-11V7l-10-5z" />
-                    <path d="M9 12l2 2 4-4" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
-                <CardTitle>Tarifs compétitifs</CardTitle>
+                <CardTitle className="group-hover:text-primary transition-colors">
+                  Tarifs compétitifs
+                </CardTitle>
                 <CardDescription>
                   Des prix transparents et adaptés à votre budget.
                 </CardDescription>
