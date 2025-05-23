@@ -49,10 +49,10 @@ const quoteSchema = z.object({
     required_error: "Veuillez sélectionner un type de service",
   }),
   options: z.object({
-    accessibility: z.boolean().default(false),
-    wifi: z.boolean().default(false),
-    toilet: z.boolean().default(false),
-    airConditioning: z.boolean().default(false),
+    accessibility: z.boolean(),
+    wifi: z.boolean(),
+    toilet: z.boolean(),
+    airConditioning: z.boolean(),
   }),
 });
 
@@ -169,7 +169,7 @@ export function QuoteForm() {
 
       // Ajouter le devis
       addQuote({
-        userId: isAuthenticated ? user?.id : null,
+        userId: isAuthenticated ? user?.id ?? null : null,
         departureLocation: values.departureLocation,
         arrivalLocation: values.arrivalLocation,
         date: values.date,
