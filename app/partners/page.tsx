@@ -186,11 +186,6 @@ export default function PartnersPage() {
                       </div>
                     </div>
                   )}
-                  <div className="mt-auto pt-4">
-                    <Link href="/quote">
-                      <Button className="w-full">Demander un devis</Button>
-                    </Link>
-                  </div>
                 </CardContent>
               </Card>
             ))}

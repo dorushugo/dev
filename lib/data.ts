@@ -11,6 +11,7 @@ export type User = {
 export type QuoteRequest = {
   id: string;
   userId: string | null; // null pour les demandes non authentifiées
+  email?: string; // Email pour les utilisateurs non connectés
   departureLocation: string;
   arrivalLocation: string;
   date: string;
@@ -81,6 +82,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req1",
     userId: "user1",
+    email: "client@exemple.fr",
     departureLocation: "Marseille",
     arrivalLocation: "Lyon",
     date: "2024-06-15",
@@ -102,6 +104,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req2",
     userId: "user1",
+    email: "client@exemple.fr",
     departureLocation: "Lille",
     arrivalLocation: "Bruxelles",
     date: "2024-06-20",
@@ -123,6 +126,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req3",
     userId: null,
+    email: undefined,
     departureLocation: "Nice",
     arrivalLocation: "Milan",
     date: "2024-06-25",
@@ -144,6 +148,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req4",
     userId: null,
+    email: undefined,
     departureLocation: "Bordeaux",
     arrivalLocation: "Toulouse",
     date: "2024-07-01",
@@ -165,6 +170,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req5",
     userId: "user1",
+    email: "client@exemple.fr",
     departureLocation: "Paris",
     arrivalLocation: "Tours",
     date: "2024-06-12",
@@ -186,6 +192,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req6",
     userId: "user1",
+    email: "client@exemple.fr",
     departureLocation: "Reims",
     arrivalLocation: "Metz",
     date: "2024-06-13",
@@ -207,6 +214,7 @@ export const quoteRequests: QuoteRequest[] = [
   {
     id: "req7",
     userId: "user1",
+    email: "client@exemple.fr",
     departureLocation: "Angers",
     arrivalLocation: "Rennes",
     date: "2024-06-18",

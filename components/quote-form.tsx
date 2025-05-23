@@ -50,6 +50,7 @@ const quoteSchema = z.object({
   serviceType: z.enum(["one-way", "round-trip", "stay"], {
     required_error: "Veuillez sélectionner un type de service",
   }),
+  email: z.string().email("Email invalide").optional(),
   options: z.object({
     accessibility: z.boolean(),
     wifi: z.boolean(),
@@ -57,6 +58,22 @@ const quoteSchema = z.object({
     airConditioning: z.boolean(),
   }),
 });
+
+// Schéma conditionnel pour les utilisateurs non connectés
+const createConditionalSchema = (isAuthenticated: boolean) => {
+  const baseSchema = quoteSchema;
+
+  if (!isAuthenticated) {
+    return baseSchema.extend({
+      email: z
+        .string()
+        .email("Email invalide")
+        .min(1, "L'email est requis pour les utilisateurs non connectés"),
+    });
+  }
+
+  return baseSchema;
+};
 
 type QuoteFormValues = z.infer<typeof quoteSchema>;
 
@@ -75,7 +92,7 @@ export function QuoteForm() {
 
   // Initialiser le formulaire avec react-hook-form et zod
   const form = useForm<QuoteFormValues>({
-    resolver: zodResolver(quoteSchema),
+    resolver: zodResolver(createConditionalSchema(isAuthenticated)),
     defaultValues: {
       departureLocation: "",
       arrivalLocation: "",
@@ -83,6 +100,7 @@ export function QuoteForm() {
       time: "",
       passengers: undefined,
       serviceType: "one-way",
+      email: "",
       options: {
         accessibility: false,
         wifi: false,
@@ -172,6 +190,7 @@ export function QuoteForm() {
       // Ajouter le devis
       addQuote({
         userId: isAuthenticated ? user?.id ?? null : null,
+        email: !isAuthenticated ? values.email : user?.email || "",
         departureLocation: values.departureLocation,
         arrivalLocation: values.arrivalLocation,
         date: values.date,
@@ -324,6 +343,31 @@ export function QuoteForm() {
                 )}
               />
             </div>
+
+            {/* Champ email pour utilisateurs non connectés */}
+            {!isAuthenticated && (
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="votre.email@exemple.fr"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Nous utiliserons cette adresse pour vous contacter
+                      concernant votre demande de devis.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <FormField
