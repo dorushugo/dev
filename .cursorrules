@@ -1,0 +1,345 @@
+# Cursor Rules - Autocar Location App
+
+## 🎯 CONTEXTE DU PROJET
+
+- Application Next.js 15+ avec TypeScript en app router
+- Système de réservation d'autocars avec gestion d'utilisateurs et partenaires
+- Interface admin/client avec authentification
+- Utilise Prisma + PostgreSQL pour la base de données
+- shadcn/ui pour les composants UI avec Tailwind CSS
+
+## 📁 STRUCTURE DU PROJET
+
+### Architecture des dossiers
+
+```
+app/
+├── api/                    # Routes API
+├── admin/                  # Pages admin
+├── dashboard/              # Dashboard client
+├── login/                  # Authentification
+├── register/               # Inscription
+├── contact/                # Contact
+├── partners/               # Partenaires
+├── profile/                # Profil utilisateur
+├── quote/                  # Demande de devis
+├── layout.tsx              # Layout principal
+├── page.tsx                # Page d'accueil
+└── globals.css             # Styles globaux
+
+components/
+├── ui/                     # Composants shadcn/ui
+├── navbar.tsx              # Navigation
+├── quote-form.tsx          # Formulaire de devis
+└── autocomplete-component.tsx
+
+lib/
+├── utils.ts                # Utilitaires (cn, formatters, etc.)
+├── auth-context.tsx        # Contexte d'authentification
+├── quote-context.tsx       # Contexte des devis
+├── partner-context.tsx     # Contexte des partenaires
+├── message-context.tsx     # Contexte des messages
+├── providers.tsx           # Providers React
+└── data.ts                 # Données mock/statiques
+
+prisma/
+└── schema.prisma           # Schéma de base de données
+```
+
+## 🔨 RÈGLES DE DÉVELOPPEMENT
+
+### 1. TYPESCRIPT & REACT
+
+- TOUJOURS utiliser TypeScript avec des types stricts
+- Utiliser `type` au lieu d'`interface` pour les props
+- Ne JAMAIS utiliser `React.FC`, déclarer directement les props
+- Préférer `const` pour les composants
+- Ne JAMAIS utiliser la variable `t` de `useTranslation` dans les dépendances d'`useEffect`
+
+```typescript
+// ✅ BON
+type Props = {
+  title: string;
+  isVisible?: boolean;
+};
+
+const MyComponent = ({ title, isVisible = false }: Props) => {
+  return <div>{title}</div>;
+};
+
+// ❌ ÉVITER
+const MyComponent: React.FC<Props> = ({ title }) => {
+  // ...
+};
+```
+
+### 2. CRÉATION DE PAGES (App Router)
+
+- Créer un dossier dans `app/` avec le nom de la route
+- Toujours nommer le fichier principal `page.tsx`
+- Utiliser `"use client"` uniquement si nécessaire (interactivité)
+- Suivre le pattern d'authentification avec les contextes
+
+```typescript
+// app/ma-page/page.tsx
+"use client"; // Si nécessaire
+
+export default function MaPagePage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold">Ma Page</h1>
+    </div>
+  );
+}
+```
+
+### 3. ROUTES API
+
+- Créer un dossier dans `app/api/` avec le nom de l'endpoint
+- Nommer le fichier `route.ts`
+- Utiliser les méthodes HTTP appropriées (GET, POST, PUT, DELETE)
+- Toujours gérer les erreurs avec try/catch
+- Retourner des réponses JSON structurées
+
+```typescript
+// app/api/mon-endpoint/route.ts
+import { NextRequest, NextResponse } from "next/server";
+
+export async function GET(request: NextRequest) {
+  try {
+    // Logique métier
+    return NextResponse.json({
+      success: true,
+      data: {},
+    });
+  } catch (error) {
+    console.error("Erreur:", error);
+    return NextResponse.json(
+      { success: false, error: "Erreur serveur" },
+      { status: 500 }
+    );
+  }
+}
+```
+
+### 4. COMPOSANTS UI (shadcn/ui)
+
+- Installer avec `pnpm dlx shadcn@latest add [component-name]`
+- Tous les composants UI sont dans `components/ui/`
+- Utiliser la fonction `cn()` de `lib/utils.ts` pour les classes conditionnelles
+- Suivre les patterns existants pour les formulaires avec react-hook-form + zod
+
+```typescript
+// Installation d'un nouveau composant
+// pnpm dlx shadcn@latest add button
+
+// Utilisation
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const MyButton = ({ className, ...props }: ButtonProps) => {
+  return (
+    <Button className={cn("bg-primary text-white", className)} {...props} />
+  );
+};
+```
+
+### 5. FORMULAIRES & VALIDATION
+
+- Utiliser react-hook-form avec zodResolver
+- Définir les schémas Zod avant le composant
+- Utiliser les composants Form de shadcn/ui
+- Gérer les erreurs avec useState pour les messages globaux
+
+```typescript
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const schema = z.object({
+  email: z.string().email("Email invalide"),
+  password: z.string().min(6, "6 caractères minimum"),
+});
+
+type FormData = z.infer<typeof schema>;
+
+const MyForm = () => {
+  const form = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: "", password: "" },
+  });
+
+  const onSubmit = (data: FormData) => {
+    // Logique de soumission
+  };
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        {/* FormField components */}
+      </form>
+    </Form>
+  );
+};
+```
+
+### 6. BASE DE DONNÉES (Prisma)
+
+- Le schéma est dans `prisma/schema.prisma`
+- Utiliser des relations explicites entre les modèles
+- Enum pour les types fixes (UserRole, ServiceType, QuoteStatus)
+- Toujours utiliser `@default(cuid())` pour les IDs
+- Utiliser des champs optionnels avec `?` quand approprié
+
+```prisma
+model MonModel {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  // Autres champs...
+}
+```
+
+### 7. CONTEXTES REACT
+
+- Créer les contextes dans `lib/`
+- Suffixer avec `-context.tsx`
+- Exporter un hook personnalisé (ex: `useAuth`, `useQuote`)
+- Gérer le localStorage quand nécessaire
+- Suivre le pattern existant des contextes
+
+```typescript
+// lib/mon-context.tsx
+"use client";
+
+import { createContext, useContext } from "react";
+
+type MonContextType = {
+  // Types...
+};
+
+const MonContext = createContext<MonContextType | undefined>(undefined);
+
+export const MonProvider = ({ children }: { children: React.ReactNode }) => {
+  // Logique du provider
+  return <MonContext.Provider value={value}>{children}</MonContext.Provider>;
+};
+
+export const useMon = () => {
+  const context = useContext(MonContext);
+  if (!context) {
+    throw new Error("useMon doit être utilisé dans MonProvider");
+  }
+  return context;
+};
+```
+
+### 8. UTILITAIRES (lib/utils.ts)
+
+- Ajouter les nouvelles fonctions utilitaires dans `lib/utils.ts`
+- Préfixer les fonctions métier avec le domaine (ex: `calculateEstimatedPrice`)
+- Utiliser des noms en français pour les fonctions de traduction
+- Toujours typer les paramètres et retours
+
+```typescript
+// Exemple de fonction utilitaire
+export function formatCustomDate(date: Date): string {
+  return date.toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+```
+
+### 9. GESTION DES PACKAGES
+
+- Utiliser `pnpm` pour installer les packages
+- Pour shadcn/ui: `pnpm dlx shadcn@latest add [component]`
+- Maintenir les versions dans package.json
+- Utiliser `--save-dev` pour les dépendances de développement
+
+### 10. STYLES & CLASSES
+
+- Utiliser Tailwind CSS exclusivement
+- Classes responsive: mobile-first (sm:, md:, lg:, xl:)
+- Utiliser les tokens de couleur du thème (primary, secondary, muted, etc.)
+- Préférer les classes utilitaires aux styles custom
+
+```typescript
+// ✅ BON
+<div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+  <h1 className="text-2xl font-bold text-foreground">Titre</h1>
+</div>
+
+// ❌ ÉVITER les styles inline
+<div style={{ padding: "2rem" }}>
+```
+
+### 11. NAVIGATION & ROUTING
+
+- Utiliser `next/link` pour la navigation interne
+- Utiliser `useRouter` de `next/navigation` pour la navigation programmatique
+- Respect de la hiérarchie des routes pour l'admin (`/admin/*`)
+- Protéger les routes avec les contextes d'authentification
+
+### 12. GESTION DES ERREURS
+
+- Toujours wrapper les appels API dans try/catch
+- Utiliser des messages d'erreur en français
+- Logger les erreurs avec `console.error`
+- Afficher des messages utilisateur friendly
+
+### 13. PERFORMANCE & OPTIMISATION
+
+- Utiliser `"use client"` seulement quand nécessaire
+- Préférer les Server Components par défaut
+- Lazy loading pour les composants lourds
+- Optimiser les images avec next/image
+
+## 🚀 WORKFLOWS COMMUNS
+
+### Ajouter une nouvelle page
+
+1. Créer le dossier dans `app/`
+2. Créer `page.tsx` avec le composant
+3. Ajouter la navigation si nécessaire
+4. Tester la route
+
+### Ajouter un composant UI
+
+1. `pnpm dlx shadcn@latest add [component-name]`
+2. Importer depuis `@/components/ui/[component-name]`
+3. Personnaliser si nécessaire
+
+### Ajouter une route API
+
+1. Créer le dossier dans `app/api/`
+2. Créer `route.ts`
+3. Implémenter les méthodes HTTP
+4. Tester avec un client
+
+### Modifier le schéma DB
+
+1. Modifier `prisma/schema.prisma`
+2. Générer la migration
+3. Appliquer les changements
+4. Mettre à jour les types si nécessaire
+
+## 🎨 CONVENTIONS DE NOMMAGE
+
+- Fichiers: kebab-case (`quote-form.tsx`)
+- Composants: PascalCase (`QuoteForm`)
+- Variables/fonctions: camelCase (`calculatePrice`)
+- Types: PascalCase (`QuoteFormData`)
+- Constantes: SCREAMING_SNAKE_CASE (`API_BASE_URL`)
+
+## 📋 CHECKLIST AVANT COMMIT
+
+- [ ] Code TypeScript sans erreurs
+- [ ] Tests passent (si applicable)
+- [ ] Responsive design vérifié
+- [ ] Accessibilité respectée
+- [ ] Messages en français
+- [ ] Gestion d'erreur implémentée
+- [ ] Performance optimisée
